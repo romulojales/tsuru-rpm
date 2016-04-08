@@ -1,4 +1,4 @@
-%global go_import_path     github.com/tsuru/tsuru-client
+%global go_import_path     github.com/tsuru/tsuru-client/tsuru
 
 Name:	tsuru-client		
 Version:	1.0.0	
@@ -25,7 +25,7 @@ go get %{go_import_path}
 mkdir -p ./_build/src/%{go_import_path}
 ln -s $(pwd) ./_build/src/%{go_import_path}
 
-export GOPATH=$(pwd)/_build
+export GOPATH=$(pwd)/_build/src
 go build -o tsuru .
 
 
@@ -40,6 +40,6 @@ install -p -m 0755 ./tsuru %{buildroot}%{_bindir}/tsuru
 
 
 %changelog
-* Tue Apr 7 2016 - Romulo Jales <romulo@romulojales.com> - 1.0.0
+* Thu Apr 7 2016 - Romulo Jales <romulo@romulojales.com> - 1.0.0
 - first version
 
