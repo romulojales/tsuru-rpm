@@ -18,7 +18,7 @@ tsuru is the command line interface for the tsuru server
 
 %prep
 export GOPATH=$(pwd)/_source
-go get %{go_import_path}
+go get -d %{go_import_path}
 
 
 %build
