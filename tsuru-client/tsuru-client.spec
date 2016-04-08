@@ -9,7 +9,7 @@ License: BSD
 URL:	https://tsuru.io	
 Source0:	https://%{go_import_path}/archive/%{version}.zip
 
-
+ExclusiveArch:  x86 x86_64
 BuildRequires:	golang
 
 %description
