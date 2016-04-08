@@ -1,15 +1,15 @@
 %global go_import_path     github.com/tsuru/tsuru-client
 
-Name:	tsuru-tsuru-client		
+Name:	tsuru-client		
 Version:	1.0.0	
 Release:	1%{?dist}
 Summary:	tsuru-client is a tsuru command line tool for application developers.
 
 License: BSD	
 URL:	https://tsuru.io	
-Source0:	https://github.com/tsuru/tsuru-client/archive/%{version}.zip
+Source0:	https://%{go_import_path}/archive/%{version}.zip
 
-BuildRequires:	compiler(go-compilers)
+BuildRequires:	golang
 
 %description
 tsuru is the command line interface for the tsuru server
@@ -21,8 +21,8 @@ tsuru is the command line interface for the tsuru server
 
 
 %build
-mkdir -p ./_build/src/github.com/tsuru/tsuru-client
-ln -s $(pwd) ./_build/src/github.com/tsuru/tsuru-client
+mkdir -p ./_build/src/%{go_import_path}
+ln -s $(pwd) ./_build/src/%{go_import_path}
 
 export GOPATH=$(pwd)/_build:%{gopath}
 go build -o tsuru .
@@ -39,6 +39,6 @@ install -p -m 0755 ./tsuru %{buildroot}%{_bindir}/tsuru
 
 
 %changelog
-* Tue 7 Apr 2016 Romulo Jales <romulo@romulojales.com> - 1.0.0
+* Tue Apr 7 2016 - Romulo Jales <romulo@romulojales.com> - 1.0.0
 - first version
 
