@@ -17,14 +17,15 @@ tsuru is the command line interface for the tsuru server
  the client used by application developers to communicate with tsuru server.
 
 %prep
-%setup -q %{name}-%{version}
+export GOPATH=$(pwd)/_source
+go get %{go_import_path}
 
 
 %build
 mkdir -p ./_build/src/%{go_import_path}
 ln -s $(pwd) ./_build/src/%{go_import_path}
 
-export GOPATH=$(pwd)/_build:%{gopath}
+export GOPATH=$(pwd)/_build
 go build -o tsuru .
 
 
