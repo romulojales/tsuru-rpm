@@ -9,6 +9,7 @@ License: BSD
 URL:	https://tsuru.io	
 Source0:	https://%{go_import_path}/archive/%{version}.zip
 
+
 BuildRequires:	golang
 
 %description
@@ -17,13 +18,14 @@ tsuru is the command line interface for the tsuru server
  the client used by application developers to communicate with tsuru server.
 
 %prep
-rm -rf $(pwd)/*
+#rm -rf $(pwd)/*
 export GOPATH=$(pwd)
 go get -d %{go_import_path}
 
 
 %build
-go build -o tsuru .
+export GOPATH=$(pwd)
+go build -o tsuru %{go_import_path}
 
 
 %install
@@ -32,8 +34,9 @@ install -p -m 0755 ./tsuru %{buildroot}%{_bindir}/tsuru
 
 
 %files
+%defattr(-,root,root,-)
 %doc
-
+%{_bindir}/tsuru
 
 
 %changelog
